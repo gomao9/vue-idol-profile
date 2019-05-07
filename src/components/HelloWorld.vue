@@ -1,12 +1,23 @@
 <template>
   <div class="hello">
-    <div  class=component>
-      <ul v-for="idol in idols" :key="idol">
-        <li>
-          {{ idol.name || idol.alternateName }}
-        </li>
-      </ul>
-    </div>
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <th>名前</th>
+        <th>年齢</th>
+        <th>身長</th>
+        <th>体重</th>
+        <th>出身地</th>
+      </thead>
+      <tbody>
+        <tr v-for="idol in idols" :key="idol.idol">
+          <td>{{ idol.name || idol.alternateName }}</td>
+          <td>{{ idol.age }}</td>
+          <td>{{ idol.height }}</td>
+          <td>{{ idol.weight }}</td>
+          <td>{{ idol.birthPlace }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -82,7 +93,7 @@ WHERE {
   GROUP BY ?idol
   }.
 }
-order by desc(?birthDate)
+order by asc(?idol)
 `
 
     // Promise形式でデータを取得
