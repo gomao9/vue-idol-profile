@@ -7,6 +7,7 @@
         <th>身長</th>
         <th>体重</th>
         <th>出身地</th>
+        <th>趣味</th>
       </thead>
       <tbody>
         <tr v-for="idol in idols" :key="idol.idol">
@@ -15,6 +16,7 @@
           <td>{{ idol.height }}</td>
           <td>{{ idol.weight }}</td>
           <td>{{ idol.birthPlace }}</td>
+          <td>{{ idol.hobbies }}</td>
         </tr>
       </tbody>
     </table>
