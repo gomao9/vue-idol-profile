@@ -10,12 +10,12 @@
         <th>趣味</th>
       </thead>
       <tbody>
-        <tr v-for="idol in idols" :key="idol.idol">
-          <td><router-link :to="'/idol/' + idol.label" :idol="idol">{{ idol.name || idol.alternateName }}</router-link></td>
+        <tr v-for="idol in idols" :key="idol.about">
+          <td><router-link :to="'/idol/' + idol.about" :about="idol.about">{{ idol.name || idol.alternateName }}</router-link></td>
           <td>{{ idol.age }}</td>
           <td>{{ idol.height }}</td>
           <td>{{ idol.weight }}</td>
-          <td>{{ idol.birthPlace }}</td>
+          <td>{{ idol.birthPlace }} </td>
           <td>{{ idol.hobbies }}</td>
         </tr>
       </tbody>
@@ -26,7 +26,7 @@
 <script>
 export default {
   name: 'HelloWorld',
-  props: ['idols']
+  props: { idols: Array }
 }
 </script>
 

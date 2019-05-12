@@ -13,7 +13,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/idol/:label',
+      path: '/idol/:about',
       name: 'Idol',
       component: Idol,
       props: true

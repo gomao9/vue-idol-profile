@@ -15,11 +15,11 @@ export default {
   name: 'Idol',
   props: {
     idols: Array,
-    label: String
+    about: String
   },
   computed: {
     idol: function () {
-      return this.idols.find((i) => { return i.label === this.label })
+      return this.idols.find((i) => { return i.about === this.about })
     }
   }
 }

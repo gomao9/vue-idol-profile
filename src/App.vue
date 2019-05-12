@@ -31,54 +31,55 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT *
 WHERE {
-  ?idol rdf:type imas:Idol.
-  optional { ?idol rdfs:label ?label. }.
-  optional { ?idol schema:name ?name. FILTER (lang(?name) = 'ja') }.
-  optional { ?idol schema:alternateName ?alternateName. FILTER (lang(?alternateName) = 'ja') }.
-  optional { ?idol schema:height ?height. }.
-  optional { ?idol schema:weight ?weight. }.
-  optional { ?idol schema:birthPlace ?birthPlace. }.
-  optional { ?idol schema:gender ?gender. }.
-  optional { ?idol imas:Attribute ?attribute. }.
-  optional { ?idol imas:BloodType ?bloodType. }.
-  optional { ?idol imas:Bust ?bust. }.
-  optional { ?idol imas:Category ?category. }.
-  optional { ?idol imas:Color ?color. }.
-  optional { ?idol imas:Division ?division. }.
-  optional { ?idol imas:Handedness ?handedness. }.
-  optional { ?idol imas:Hip ?hip. }.
-  optional { ?idol imas:ShoeSize ?shoeSize. }.
-  optional { ?idol imas:Type ?type. }.
-  optional { ?idol imas:Waist ?waist. }.
-  optional { ?idol imas:constellation ?constellation. }.
-  optional { ?idol imas:familyNameKana ?familyNameKana. }.
-  optional { ?idol imas:givenNameKana ?givenNameKana. }.
-  optional { ?idol imas:nameKana ?nameKana. }.
-  optional { ?idol schema:birthDate ?birthDate. }.
-  optional { ?idol schema:birthPlace ?birthPlace. }.
-  optional { ?idol schema:familyName ?familyName. FILTER (lang(?familyName) = 'ja') }.
-  optional { ?idol schema:gender ?gender. }.
-  optional { ?idol schema:givenName ?givenName. FILTER (lang(?givenName) = 'ja') }.
-  optional { ?idol schema:height ?height. }.
-  optional { ?idol schema:weight ?weight. }.
-  optional { ?idol foaf:age ?age. }.
+  ?uri rdf:type imas:Idol.
+  bind(replace(STR(?uri), "https://sparql.crssnky.xyz/imasrdf/RDFs/detail/", "") as ?about).
+  optional { ?uri rdfs:label ?label. }.
+  optional { ?uri schema:name ?name. FILTER (lang(?name) = 'ja') }.
+  optional { ?uri schema:alternateName ?alternateName. FILTER (lang(?alternateName) = 'ja') }.
+  optional { ?uri schema:height ?height. }.
+  optional { ?uri schema:weight ?weight. }.
+  optional { ?uri schema:birthPlace ?birthPlace. }.
+  optional { ?uri schema:gender ?gender. }.
+  optional { ?uri imas:Attribute ?attribute. }.
+  optional { ?uri imas:BloodType ?bloodType. }.
+  optional { ?uri imas:Bust ?bust. }.
+  optional { ?uri imas:Category ?category. }.
+  optional { ?uri imas:Color ?color. }.
+  optional { ?uri imas:Division ?division. }.
+  optional { ?uri imas:Handedness ?handedness. }.
+  optional { ?uri imas:Hip ?hip. }.
+  optional { ?uri imas:ShoeSize ?shoeSize. }.
+  optional { ?uri imas:Type ?type. }.
+  optional { ?uri imas:Waist ?waist. }.
+  optional { ?uri imas:constellation ?constellation. }.
+  optional { ?uri imas:familyNameKana ?familyNameKana. }.
+  optional { ?uri imas:givenNameKana ?givenNameKana. }.
+  optional { ?uri imas:nameKana ?nameKana. }.
+  optional { ?uri schema:birthDate ?birthDate. }.
+  optional { ?uri schema:birthPlace ?birthPlace. }.
+  optional { ?uri schema:familyName ?familyName. FILTER (lang(?familyName) = 'ja') }.
+  optional { ?uri schema:gender ?gender. }.
+  optional { ?uri schema:givenName ?givenName. FILTER (lang(?givenName) = 'ja') }.
+  optional { ?uri schema:height ?height. }.
+  optional { ?uri schema:weight ?weight. }.
+  optional { ?uri foaf:age ?age. }.
   optional {
-    SELECT ?idol (group_concat(distinct ?hobby ; separator = ", ") AS ?hobbies)
-    WHERE { ?idol imas:Hobby ?hobby .  }
-    GROUP BY ?idol
+    SELECT ?uri (group_concat(distinct ?hobby ; separator = ", ") AS ?hobbies)
+    WHERE { ?uri imas:Hobby ?hobby .  }
+    GROUP BY ?uri
   }.
    optional {
-    SELECT ?idol (group_concat(distinct ?talent ; separator = ", ") AS ?talents)
-    WHERE { ?idol imas:Talent ?talent .  }
-    GROUP BY ?idol
+    SELECT ?uri (group_concat(distinct ?talent ; separator = ", ") AS ?talents)
+    WHERE { ?uri imas:Talent ?talent .  }
+    GROUP BY ?uri
   }.
   optional {
-  SELECT ?idol (group_concat(distinct ?favorite ; separator = ", ") AS ?favorites)
-  WHERE { ?idol imas:Favorite ?favorite . }
-  GROUP BY ?idol
+  SELECT ?uri (group_concat(distinct ?favorite ; separator = ", ") AS ?favorites)
+  WHERE { ?uri imas:Favorite ?favorite . }
+  GROUP BY ?uri
   }.
 }
-order by asc(?idol)
+order by asc(?uri)
 `
 
     // Promise形式でデータを取得
